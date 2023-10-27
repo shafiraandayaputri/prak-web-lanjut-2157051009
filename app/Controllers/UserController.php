@@ -19,20 +19,20 @@ class UserController extends BaseController
 
     public function index()
     {
-      $data = [
-        'title' => 'List User',
-        'users' => $this->userModel->getUser(),  
-      ];
-
-      return view('list_user', $data);
+        $data = [
+            'title' => 'List User',
+            'users' => $this->userModel->getUser(),
+        ];
+        //
+        return view('list_user', $data);
     }
 
     public function profile($nama = "", $kelas = "", $npm="")
     {
         
         $data = [
-            'nama' => "$nama",
-            'kelas' => "$kelas",            
+            'nama' => $nama,
+            'kelas' => $kelas,            
             'npm' => $npm,
         ];
 
@@ -61,17 +61,21 @@ class UserController extends BaseController
         //     ],
         // ];
 
+        // $kelasModel = new KelasModel();
+
         $kelas = $this->kelasModel->getKelas();
-        $data  = [
+
+        $data = [
             'title' => 'Create User',
             'kelas' => $kelas,
-            'validation' => \Config\Services::validation()
         ];
-        return view('create_user', $data);
+
+        return view('create_user',$data);
     }
     
     public function store()
     {
+
         $rules = [
             'npm' => [
                 'rules' => 'required|min_length[10]|max_length[10]|is_unique[user.npm]',
@@ -94,28 +98,34 @@ class UserController extends BaseController
             session()->setFlashdata('error', $this->validator->listErrors());
 
             return redirect()->to('/user/create');
-        }else{
-            $userModel = new UserModel();
-            
+        }
 
-            $userModel->saveUser([
+            
+            $path = 'assets/uploads/img/';
+            $foto = $this->request->getFile('foto');
+            $name = $foto->getRandomName();
+            if ($foto->move($path, $name)) {
+            $foto = base_url($path . $name);
+        }
+
+            $this->userModel->saveUser([
                 'nama' => $this->request->getVar('nama'),
                 'id_kelas' => $this->request->getVar('kelas'),
                 'npm' => $this->request->getVar('npm'),
+                'foto' => $foto
             ]);
 
-            $model = new KelasModel();
-            $result = $model->find($this->request->getVar('kelas'));
-
-
-            $data = [
-                'nama' => $this->request->getVar('nama'),
-                'kelas' => $result['nama_kelas'],            
-                'npm' => $this->request->getVar('npm'),
-            ];
             return redirect()->to('/user');
         }
-        // dd($errors);
-    }
 
+    public function show($id) {
+        $user = $this->userModel->getUser($id);
+
+        $data = [
+            'title' => 'Profile',
+            'user'  => $user,
+        ];
+
+        return view('profile', $data);
+    }
 }
