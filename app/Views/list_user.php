@@ -12,6 +12,7 @@
         </tr>
     </thead>
     <tbody>
+    <a href="<?= base_url('/user/create') ?>">Tambah Data</a>
         <?php
         foreach ($users as $user){
         ?>

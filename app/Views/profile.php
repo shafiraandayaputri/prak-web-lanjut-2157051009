@@ -58,19 +58,21 @@
     </style>
 </head>
 <body>
-    <div class="profile-card">
-        <div class="img">
+<div class="profile-card">
+        <div class="profile-picture">
+            <img src="<?= $user['foto'] ?? '<default-foto>' ?>" width="100%" height="100%" alt="">
             <i class="fas fa-user"></i> <!-- Gunakan ikon profil Font Awesome di sini -->
         </div>
         <div class="profile-info">
-            <span>Nama:</span> <?= $nama ?>
+            <?= $user['nama'] ?>
         </div>
         <div class="profile-info">
-            <span>Kelas:</span> <?= $kelas ?>
+            <?= $user['nama_kelas'] ?>
         </div>
         <div class="profile-info">
-            <span>NPM:</span> <?= $npm ?>
+            <?= $user['npm'] ?>
         </div>
-    </div>
+    </div>
+
 </body>
 </html>
