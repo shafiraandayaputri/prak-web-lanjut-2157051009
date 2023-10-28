@@ -22,15 +22,15 @@
         }
 
         .img {
-    background-image: url(/profile/IMG/fira.jpeg);
-    filter: brightness(0.8);
-    background-color: #454846;
-    background-size: cover;
-    border-radius: 100px;
-    width: 150px;
-    height: 150px;
-    margin: 20px auto;
-}
+            background-image: url(/profile/IMG/fira.jpeg);
+            filter: brightness(0.8);
+            background-color: #454846;
+            background-size: cover;
+            border-radius: 100px;
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+        }
 
         .profile-picture {
             background-image: url(/profile/IMG/fira.jpeg);
@@ -73,6 +73,5 @@
             <?= $user['npm'] ?>
         </div>
     </div>
-
 </body>
 </html>

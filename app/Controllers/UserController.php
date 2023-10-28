@@ -118,17 +118,6 @@ class UserController extends BaseController
             return redirect()->to('/user');
         }
 
-    // public function show($id) {
-    //     $user = $this->userModel->getUser($id);
-
-    //     $data = [
-    //         'title' => 'Profile',
-    //         'user'  => $user,
-    //     ];
-
-    //     return view('profile', $data);
-    // }
-
     public function edit($id){
         $user = $this->userModel->getUser($id);
         $kelas = $this->kelasModel->getkelas();
