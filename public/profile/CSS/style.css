@@ -161,8 +161,16 @@ i:hover {
   border-color: white;
   background-color: transparent !important;
 }
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
 
 .nav-item {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 30px;
+  margin-right: 125px;
+  padding: 20 25px;
 }
