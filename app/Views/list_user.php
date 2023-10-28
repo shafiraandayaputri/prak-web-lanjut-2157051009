@@ -22,10 +22,15 @@
             <td><?= $user['npm'] ?></td>
             <td><?= $user['nama_kelas'] ?></td>
             <td>
-                <a href="<?= base_url('user/' . $user['id']) ?>">Detail</a>
-                <!-- <button type=button>Detail</button> -->
-                <a href="<?= base_url('user/' . $user['id'] . '/edit') ?>">Edit</a>
-                <form action="<?= base_url('user/' . $user['id']) ?>" method="post"><button type=button>Hapus</button>
+                <form action="<?= base_url('user/' . $user['id']) ?>" method="GET">
+                <button type=submit>Detail</button></form>
+
+                <form action="<?= base_url('user/' . $user['id'] . '/edit') ?>" method="GET">
+                <button type=submit>Edit</button></form>
+                
+                <form action="<?= base_url('user/' . $user['id']) ?>" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type=submit>Hapus</button></form>
             </td>
         </tr>
         <?php
